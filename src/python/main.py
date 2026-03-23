@@ -18,13 +18,13 @@ def print_cube_net(cube_string):
     U = cube_string[0:9]
     R = cube_string[9:18]
     F = cube_string[18:27]
-    D = cube_string[27:36] # Fixed typo!
-    L = cube_string[36:45] # Fixed typo!
+    D = cube_string[27:36]
+    L = cube_string[36:45]
     B = cube_string[45:54]
 
     # Print Up face
     for i in range(0, 9, 3):
-        print(f"      {U[i]} {U[i+1]} {U[i+2]}")
+        print(f"       {U[i]} {U[i+1]} {U[i+2]}")
         
     # Print Left, Front, Right, Back faces inline
     for i in range(0, 9, 3):
@@ -32,14 +32,14 @@ def print_cube_net(cube_string):
         
     # Print Down face
     for i in range(0, 9, 3):
-        print(f"      {D[i]} {D[i+1]} {D[i+2]}")
+        print(f"       {D[i]} {D[i+1]} {D[i+2]}")
     print("---------------------------\n")
 
 def main():
     print("=========================================")
-    print("       AGNOSTIC CUBE SOLVER         ")
+    print("         CUBE SOLVER         ")
     print("=========================================\n")
-    print("IMPORTANT: Scan the faces in this exact physical sequence:")
+    print("Scan the faces in this exact physical sequence:")
     print("1. UP    (Top face)")
     print("2. FRONT (Tilt the cube DOWN)")
     print("3. RIGHT (Rotate the cube LEFT)")
@@ -58,7 +58,6 @@ def main():
             kociemba_string = hsv_to_kociemba_string(colors)
             print("[+] Clustering successful!")
             
-            # RUN THE DEBUGGER
             print_cube_net(kociemba_string)
             
             print("[*] Calculating optimal solution path...")

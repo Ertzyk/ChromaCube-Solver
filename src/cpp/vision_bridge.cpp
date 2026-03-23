@@ -22,6 +22,10 @@ std::vector<int> get_average_hsv(const cv::Mat& frame, cv::Rect roi) {
 
 std::vector<std::vector<int>> extract_hsv_colors() {
     cv::VideoCapture cap(0); // Open default webcam
+
+    cap.set(cv::CAP_PROP_FRAME_WIDTH, 1280);
+    cap.set(cv::CAP_PROP_FRAME_HEIGHT, 720);
+
     if (!cap.isOpened()) {
         throw std::runtime_error("Error: Could not open the webcam.");
     }
@@ -30,8 +34,8 @@ std::vector<std::vector<int>> extract_hsv_colors() {
     cv::Mat frame;
     
     // Grid configuration
-    int square_size = 50;
-    int gap = 10;
+    int square_size = 80; 
+    int gap = 16;    
     int faces_captured = 0;
 
     std::cout << "Webcam opened. Align the cube and press SPACE to capture a face. Press ESC to quit." << std::endl;
@@ -57,8 +61,16 @@ std::vector<std::vector<int>> extract_hsv_colors() {
                 cv::Rect roi(x, y, square_size, square_size);
                 current_grid.push_back(roi);
                 
-                // Draw a rectangle on the frame so the user can see where to hold the cube
+                // Draw the white outline for the user to aim
                 cv::rectangle(frame, roi, cv::Scalar(255, 255, 255), 2);
+
+                // Calculate the real-time average BGR color of this specific square
+                cv::Mat roi_bgr = frame(roi);
+                cv::Scalar avg_bgr = cv::mean(roi_bgr);
+
+                // Draw a small filled "color swatch" in the corner of the square
+                cv::Rect swatch(x + 2, y + 2, 15, 15);
+                cv::rectangle(frame, swatch, avg_bgr, cv::FILLED);
             }
         }
 
