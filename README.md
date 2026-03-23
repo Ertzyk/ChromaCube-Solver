@@ -36,9 +36,10 @@ This project bridges a high-speed C++ vision frontend with a heavy mathematical 
 * **C++ Compiler:** MSVC (Windows) or GCC/Clang (Mac/Linux).
 * **CMake & Ninja:** For building the C++ bridge.
 * **OpenCV:** Installed and built on your system.
-* **Python 3.8+** ### 1. Build the C++ Vision Engine
-Clone the repository and build the `pybind11` module. *(Note: Update the CMake flags to point to your local Python executable and OpenCV build directories).*
+* **Python 3.8+** 
 
+### Build the C++ Vision Engine
+Clone the repository and build the `pybind11` module. *(Note: Update the CMake flags to point to your local Python executable and OpenCV build directories).*
 ```bash
 mkdir build
 cd build
